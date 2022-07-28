@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Highscore</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="timer"></div>
+        <div id="questions">
+            <h1>Highscore</h1>
+            <ul id="scores"></ul>
+            <button id="backBtn">Back</button>
+        </div>
+    </div>
+
+    <Form class="endFormContainer">
+        <h3>Enter your intials</h3>
+        <input type="text" name="intials" id="intials" placeholder="Your intials" >
+        <button class="btn" id="saveButton" type="submit" onClick="saveHighScore(event)">Save</button> 
+        <button class="btn" id="back" type="submit" onClick="clearHighScore(event)">Back</button>                       
+    </Form>  
+    <script src="./Assests/highscore.js"></script> 
+</body>
+</html>

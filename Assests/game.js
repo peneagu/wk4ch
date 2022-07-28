@@ -3,7 +3,7 @@ setInterval(() => {
     const computedStyle = getComputedStyle(progressBar)
     const width = parseFloat(computedStyle.getPropertyValue) ('--width')) || 0
     progressBar.style.setProperty('--width', width + .1)
-} ,5)
+});
 
 const question = document.querySelector('#question')
 const choices = Array.from(document.querySelector('.choice-text'));
@@ -15,44 +15,44 @@ let currentQuestion ={}
 let acceptingAnswers= true
 let score = 0
 let questionCounter = 0
-let available questions = []
+let question: any
 
-let questions = [
+const questions = [
     {
-        question: 'what is 2+2?'
-        choice1: '2',
-        choice2: '4',
-        choice3: '7',
-        choice4: '8',
+        question: " I have a pulse but no heart, a brain but can’t think and while I can sleep, I usually don’t stay asleep for long? What am I?",
+        choice1: 'Major Axis',
+        choice2: 'Mainframe',
+        choice3: 'A configuration file',
+        choice4: 'A data structure',
         answer: 2,
-    }
-
-    {
-        question: 'kjadhfgkdasjgfkjgdfkjhg is 2+2?'
-        choice1: '2',
-        choice2: '4',
-        choice3: '7',
-        choice4: '8',
-        answer: 2,
-    }
+    },
 
     {
-        question: 'what ghfghnjgfhjfhgj 2+2?'
-        choice1: '2',
-        choice2: '4',
-        choice3: '7',
-        choice4: '8',
-        answer: 2,
-    }
+        question: 'I’m a language for everything yet I have no real identity of my own. Good luck trying to compile me. What am I?',
+        choice1: 'Pseudocode',
+        choice2: 'JavaScript',
+        choice3: 'MySql',
+        choice4: 'CSS',
+        answer: 1,
+    },
 
     {
-        question: 'what is 2+dsfsdfsdfsdfsdf?'
-        choice1: '2',
-        choice2: '4',
-        choice3: '7',
-        choice4: '8',
-        answer: 2,
-    }
+        question: 'The more you code, the more of me there is. I may be gone for now but you can’t get rid of me forever. What am I?',
+        choice1: 'an update on your machine',
+        choice2: 'an object',
+        choice3: 'Pseudocode',
+        choice4: 'a Bug',
+        answer: 4,
+    },
+
+    {
+        question: 'I’m a shape shifter. You could call me someone who could possess multiple qualities but only has one set of them at any given time. What am I?',
+        choice1: 'A red-black tree2',
+        choice2: 'A server',
+        choice3: 'Polymorphism',
+        choice4: 'A product/project manager',
+        answer: 3,
+    },
 ]
 
 const SCORE_POINTS = 100
