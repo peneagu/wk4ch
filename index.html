@@ -9,52 +9,61 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap" rel="stylesheet">
-    <title>Quiz App</title>
+    <title> <h1>Code Quiz</h1></title>
 </head>
-<body>
-    <!-- Home Page Start -->
-    <div class="container" >
-    <div id="home" class="flex-column flex-center">
-        <h1>Code Quiz!</h1>
-        <a href="./game.html"><button id="startBtn" class="startBtn">Start</button></a>
-        <a href="./highscore .html"></a><button id="highScoreBtn" class="highScoreBtn">High Score</button></a>    
-   </div>
-   <!--home page end-->
 
+<h1>Code Quiz</h1>
+<div class="startBtn">
+    <button>Start Quiz</button>
+</div>
+<div class="ruleBox">
+    <div class="ruleList">
+        <div class="info"><h2>Rules to The Game</h2></div>
+        <div class="info">If You answer a questions incorrectly, <strong>15 seconds</strong> will be subtracted from your time</div>
+        <div class="info">ALL questions must be answered before the timer runs out.</div>
+        <div class="info">Make sure you enter your initials to save your score.</div>
+        <div class="info">Give it another try!</div>
+    </div>
+    <div class="buttons">
+        <div><button class="continue">Continue</button></div>
+        <div><button class="exit">Exit</button></div>
+        <a href="highScores.html" class="prevHS">Previous Highscores</a>
+    </div>
+</div>
+
+    
+    
+    
    <!-- quiz page start-->
-   <div class="quizContainer">
-        <div id="game" class="justify-center flex-column">
-            <div id="hud">
-            
-
-            <div class="progressBar"  data-label="Loading...."></div>
-                <div class="hud-item">
-                    <p class="hud-prefix">Score</p>
-                    <h2 class="hud-main-text" id="score">0</h2>
-                </div>
-            </div>
-            <div id="questionContainer" class="hide">
-                <div id="question"><h2>Question</h2></div>
-                <div id="choiceBtn">
-                    <div class="choiceBtn"> <p class="choice-prefix">A.</p> <p class="choice-text" data-number="1">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p></div>
-                    <div class="choiceBtn"> <p class="choice-prefix">B.</p> <p class="choice-text" data-number="2">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p></div>
-                    <div class="choiceBtn"> <p class="choice-prefix">C.</p> <p class="choice-text" data-number="3">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p></div>
-                    <div class="choiceBtn"> <p class="choice-prefix">D.</p> <p class="choice-text" data-number="4">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p></div>
-                </div>
-            </div>
-            
-        <div class="controls">
-            <button id="nextBtn" class="nextBtn"> Next </button>
-        </div> 
+    <div class="theQuiz">
+        <header><h2>Code Quiz</h2>
+            <div id="myProgress">
+                <div id="myBar"></div>
         </div>
-   </div>
-   <!-- quiz page end -->
-   <!-- timer start -->
-   <div class="timeContainer"><h2 id="timer">0:00</h2></div>
-   <!-- timer end -->
-
-
-   <script src="./Assests/game.js"></script>
-   <script src="./Assests/highscore.js"></script>
+        <div class="timer"> 
+                <div id="time_text">Time Left</div>
+                <div class="timer_sec">15</div>
+                <button onclick="upload ()">Next</button>
+        </div>
+        </header>
+        <!-- questions -->
+        <div id="question">What is the answer</div>
+        <div class="choiceContainer">
+            <p class="choice-prefix">A</p>
+            <p class="choice-text" data-number="1">Choice</p>
+        </div>
+        <div class="choiceContainer">
+            <p class="choice-prefix">B</p>
+            <p class="choice-text" data-number="2">Choice</p>
+        </div>
+        <div class="choiceContainer">
+            <p class="choice-prefix">C</p>
+            <p class="choice-text" data-number="3">Choice</p>
+        </div>
+        <div class="choiceContainer">
+            <p class="choice-prefix">D</p>
+            <p class="choice-text" data-number="4">Choice</p>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,23 +1,38 @@
-const progressBar = document.getElementsByClassName ('progressBar')[0]
-setInterval(() => {
-    const computedStyle = getComputedStyle(progressBar)
-    const width = parseFloat(computedStyle.getPropertyValue) ('--width')) || 0
-    progressBar.style.setProperty('--width', width + .1)
-});
+// progress bar start
 
-const question = document.querySelector('#question')
+const upload = () => {
+    const myProgress = document.querySelector('#myProgress')
+    myProgress.setAttribute('id', 'play-animation')
+}
+
+// progress bar end
+
+// // timer start
+timeStart.innerHTML = setTime;
+function countdown (){
+   const countDown = setInterval(()=>{
+        setTime--,
+        timeStart.innerHTML = setTime;
+        if(setTime < 0 || setTime <1){
+            clearInterval(countDown);
+        }
+    },1000); 
+}
+// // timer end
+
+const question = document.querySelector('#question');
+const timer = document.querySelector('.timer');
 const choices = Array.from(document.querySelector('.choice-text'));
-const progressText = document.querySelector('#progressText')
-const scoreText = document.querySelector('#score')
-const progressBarFull = document.querySelector('#progressBarFull')
+const progressText = document.querySelector('#progressText');
+const scoreText = document.querySelector('#score');
 
-let currentQuestion ={}
-let acceptingAnswers= true
-let score = 0
-let questionCounter = 0
-let question: any
+var currentQuestion = {}
+var acceptingAnswers= true
+var score = 0
+var questionCounter = 0
+var availableQuestion = []
 
-const questions = [
+var questions = [
     {
         question: " I have a pulse but no heart, a brain but can’t think and while I can sleep, I usually don’t stay asleep for long? What am I?",
         choice1: 'Major Axis',
@@ -55,18 +70,19 @@ const questions = [
     },
 ]
 
-const SCORE_POINTS = 100
-const MAX_QUESTIONS = 4
+var score = 0;
+var questions = 4
 
-startingGame - () => {
+function startGame () {
     questionCounter = 0
     score = 0
-    availableQuestoions = [...questions]
+    startBtn,classList.add("hide")
+    availableQuestions = [...questions]
     getNewQuestion()
 }
 
 getNewQuestion = () => {
-    if(availableQuestoions.length === 0 || questionCounter > MAX_QUESTIONS) {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
 
         return window.location.assign('/end.html')
@@ -76,15 +92,15 @@ getNewQuestion = () => {
     progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
     progressBarFull.style.width = '${(questionCounter/MAX_QUESTIONS) * 100}%'
 
-    const questionsIndex = Math.floot(math.random() * availableQuestoions.length)
-    currentQuestion = availableQuestoions[questionsIndex]
+    const questionsIndex = Math.floor(math.random() * availableQuestions.length)
+    currentQuestion = availableQuestions[questionsIndex]
     question.innerText = currentQuestion
 
     choices.forEach(choice => {
         const number = choice.dataset['number']
         choice.innerText = currentQuestion ['choice' + number]
     })
-    availableQuestoions.splice(questionsIndex, 1)
+    availableQuestions.splice(questionsIndex, 1)
 
     acceptingAnswers = true 
 }
@@ -97,8 +113,7 @@ choices.forEach(choice => {
         const selectedChoice = e.target
         const selectedAnswer = selectedChoice.dataset['number']
 
-        let classToApply = selected == currentQuestion.answer ? 'correct' :
-        'incorrect'
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
         if(classToApply ==='correct') {
             incrementScore(SCORE_POINTS)
@@ -107,9 +122,19 @@ choices.forEach(choice => {
         selectedChoice.parentElement.classList.add(classToApply)
 
         setTimeout (() => {
-        selectedChoice.parentElement.classList.remoce(classToApply)
+        selectedChoice.parentElement.classList.remove(classToApply)
         getNewQuestion()
 
-    }, 100)
+    }, 1000)
     })
 })
+
+
+
+
+
+
+
+
+
+
