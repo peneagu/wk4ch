@@ -4,66 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./Assests/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Assests/style.css">
     <script defer src="./Assests/game.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap" rel="stylesheet">
-    <title> <h1>Code Quiz</h1></title>
+    <title>Coder Girl Quiz</title>
 </head>
-
-<h1>Code Quiz</h1>
-<div class="startBtn">
-    <button>Start Quiz</button>
-</div>
-<div class="ruleBox">
-    <div class="ruleList">
-        <div class="info"><h2>Rules to The Game</h2></div>
-        <div class="info">If You answer a questions incorrectly, <strong>15 seconds</strong> will be subtracted from your time</div>
-        <div class="info">ALL questions must be answered before the timer runs out.</div>
-        <div class="info">Make sure you enter your initials to save your score.</div>
-        <div class="info">Give it another try!</div>
-    </div>
-    <div class="buttons">
-        <div><button class="continue">Continue</button></div>
-        <div><button class="exit">Exit</button></div>
-        <a href="highScores.html" class="prevHS">Previous Highscores</a>
-    </div>
-</div>
-
+<body>
     
-    
-    
-   <!-- quiz page start-->
-    <div class="theQuiz">
-        <header><h2>Code Quiz</h2>
-            <div id="myProgress">
-                <div id="myBar"></div>
+</body>
+</html>
+<body>
+    <div class="container">
+        <div id="question container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="asnwer-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
         </div>
-        <div class="timer"> 
-                <div id="time_text">Time Left</div>
-                <div class="timer_sec">15</div>
-                <button onclick="upload ()">Next</button>
-        </div>
-        </header>
-        <!-- questions -->
-        <div id="question">What is the answer</div>
-        <div class="choiceContainer">
-            <p class="choice-prefix">A</p>
-            <p class="choice-text" data-number="1">Choice</p>
-        </div>
-        <div class="choiceContainer">
-            <p class="choice-prefix">B</p>
-            <p class="choice-text" data-number="2">Choice</p>
-        </div>
-        <div class="choiceContainer">
-            <p class="choice-prefix">C</p>
-            <p class="choice-text" data-number="3">Choice</p>
-        </div>
-        <div class="choiceContainer">
-            <p class="choice-prefix">D</p>
-            <p class="choice-text" data-number="4">Choice</p>
+        <div class="controls">
+            <button id="startBtn" class="startBtn btn">Start</button>
+            <button id="nextBtn" class="nextBtn btn">Next</button>
         </div>
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

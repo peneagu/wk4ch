@@ -1,140 +1,143 @@
-// progress bar start
+const startButton = document.getElementById('startBtn')
+const nextButton = document.getElementById('nextBtn')
+const questionContainerElement = document.getElementById ('question-container')
+const questionElement = document.getElementById('questions')
+const answerButtonElement = document.getElementById ('answer-buttons')
 
-const upload = () => {
-    const myProgress = document.querySelector('#myProgress')
-    myProgress.setAttribute('id', 'play-animation')
-}
 
-// progress bar end
+let shuffledQuestions, currentQuestionIndex
 
-// // timer start
-timeStart.innerHTML = setTime;
-function countdown (){
-   const countDown = setInterval(()=>{
-        setTime--,
-        timeStart.innerHTML = setTime;
-        if(setTime < 0 || setTime <1){
-            clearInterval(countDown);
-        }
-    },1000); 
-}
-// // timer end
-
-const question = document.querySelector('#question');
-const timer = document.querySelector('.timer');
-const choices = Array.from(document.querySelector('.choice-text'));
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-
-var currentQuestion = {}
-var acceptingAnswers= true
-var score = 0
-var questionCounter = 0
-var availableQuestion = []
-
-var questions = [
-    {
-        question: " I have a pulse but no heart, a brain but can’t think and while I can sleep, I usually don’t stay asleep for long? What am I?",
-        choice1: 'Major Axis',
-        choice2: 'Mainframe',
-        choice3: 'A configuration file',
-        choice4: 'A data structure',
-        answer: 2,
-    },
-
-    {
-        question: 'I’m a language for everything yet I have no real identity of my own. Good luck trying to compile me. What am I?',
-        choice1: 'Pseudocode',
-        choice2: 'JavaScript',
-        choice3: 'MySql',
-        choice4: 'CSS',
-        answer: 1,
-    },
-
-    {
-        question: 'The more you code, the more of me there is. I may be gone for now but you can’t get rid of me forever. What am I?',
-        choice1: 'an update on your machine',
-        choice2: 'an object',
-        choice3: 'Pseudocode',
-        choice4: 'a Bug',
-        answer: 4,
-    },
-
-    {
-        question: 'I’m a shape shifter. You could call me someone who could possess multiple qualities but only has one set of them at any given time. What am I?',
-        choice1: 'A red-black tree2',
-        choice2: 'A server',
-        choice3: 'Polymorphism',
-        choice4: 'A product/project manager',
-        answer: 3,
-    },
-]
-
-var score = 0;
-var questions = 4
-
-function startGame () {
-    questionCounter = 0
-    score = 0
-    startBtn,classList.add("hide")
-    availableQuestions = [...questions]
-    getNewQuestion()
-}
-
-getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score)
-
-        return window.location.assign('/end.html')
-    }
-
-    questionCounter++
-    progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
-    progressBarFull.style.width = '${(questionCounter/MAX_QUESTIONS) * 100}%'
-
-    const questionsIndex = Math.floor(math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex]
-    question.innerText = currentQuestion
-
-    choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion ['choice' + number]
-    })
-    availableQuestions.splice(questionsIndex, 1)
-
-    acceptingAnswers = true 
-}
-
-choices.forEach(choice => {
-    choice.addEventListener('click', e => {
-        if(!acceptingAnswers) return
-
-        acceptingAnswers = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
-
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-
-        if(classToApply ==='correct') {
-            incrementScore(SCORE_POINTS)
-        }
-
-        selectedChoice.parentElement.classList.add(classToApply)
-
-        setTimeout (() => {
-        selectedChoice.parentElement.classList.remove(classToApply)
-        getNewQuestion()
-
-    }, 1000)
-    })
+startButton.addEventListener('click' , startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    NextQuestion ()
 })
 
+function startGame() {
+    console.log('started')
+    startButton.classList.add('hide')
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove('hide')
+    NextQuestion()
+}
+
+
+function NextQuestion () {
+    resetState ()
+    showQuestions(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question){
+    questionElement.innerText = question.question
+    question.answers.ForEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click',selectAnswer)
+        answerButtonElement.appendChild(button)
+    })
+}
+
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add('hide')
+    while (answerButtonElement.firstChild) {
+        answerButtonElement.removeChild
+        (answerButtonElement.firstChild)
+    }
+}
+
+function selectAnswer(e){
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide')
+    } else {
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('hide')
+    }
+}
+
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element){
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+
+}
+
+const question = [
+    {
+        question: 'Where is the correct place to insert a JavaScript?',
+        answers: [
+            { text: 'Both the <head> section and the <body> section are correct  ', correct: true },
+            { text: 'The <head> section', correct: false },
+            { text: 'The <body> section', correct: false },
+
+        ]
+    },
+
+    {
+        question: 'How do you write "Hello World" in an alert box?',
+        answers: [
+            { text: 'alertBox("Hello World");', correct: false },
+            { text: 'msgBox("Hello World");', correct: false },
+            { text: 'alert("Hello World");', correct: true },
+            { text: 'msg("Hello World");', correct: false },
+
+        ]
+    },
+
+    {
+        question: 'How to write an IF statement in JavaScript?',
+        answers: [
+            { text: 'if i = 5', correct: false },
+            { text: 'if i = 5 then', correct: false },
+            { text: 'if i == 5 then', correct: false },
+            { text: 'if (i == 5)', correct: true },
+
+        ]
+    },
+
+    {
+        question: 'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
+        answers: [
+            { text: 'if i <> 5', correct: false },
+            { text: 'if (i != 5)', correct: true },
+            { text: 'if (i <> 5)', correct: false },
+            { text: 'if i =! 5 then', correct: false },
+
+        ]
+    },
+
+    {
+        question: 'What is the correct way to write a JavaScript array?',
+        answers: [
+            { text: 'var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', correct: false },
+            { text: 'var colors = ["red", "green", "blue"]', correct: true },
+            { text: 'var colors = "red", "green", "blue"', correct: false },
+            { text: 'var colors = (1:"red", 2:"green", 3:"blue")', correct: false },
+
+        ]
+    },
 
 
 
 
-
-
-
-
-
+]
