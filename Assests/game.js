@@ -1,14 +1,37 @@
 const startButton = document.getElementById('startBtn')
 const nextButton = document.getElementById('nextBtn')
-const questionContainerElement = document.getElementById ('question-container')
+const questionContainerElement = document.getElementById ('questionContainer')
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById ('answer-buttons')
+var timer = document.querySelector(".timer");
+
+
+
+
+function startTimer() {
+    // Initiate timerClock function once per second
+    quizTime = setInterval(timerClock, 1000);
+}
+
+function stopTimer() {
+    clearInterval(quizTime);
+}
+
+function timerClock() {
+    timeLeft--;
+    timer.textContent = "Timer: " + timeLeft;
+    if (timeLeft <= 0) {
+        // clearInterval so it doesn't go into negatives
+        clearInterval(quizTime);
+        timer.textContent = "Timer: 0";
+        gameOver();
+    }
+}
 
 
 let shuffledQuestions, currentQuestionIndex
 
-startButton.addEventListener('click' , startGame)
-nextButton.addEventListener('click', () => {
+ startButton.addEventListener('click', startGame, () => {
     currentQuestionIndex++
     NextQuestion ()
 })
@@ -28,7 +51,7 @@ function NextQuestion () {
     showQuestions(shuffledQuestions[currentQuestionIndex])
 }
 
-function showQuestion(question){
+function showQuestions(question){
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
@@ -44,7 +67,7 @@ function showQuestion(question){
 
 function resetState() {
     clearStatusClass(document.body)
-    nextButton.classList.add('hide')
+    startButton.classList.add('hide')
     while (answerButtonElement.firstChild) {
         answerButtonElement.removeChild
         (answerButtonElement.firstChild)
@@ -59,7 +82,7 @@ function selectAnswer(e){
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
+        startButton.classList.remove('hide')
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
@@ -105,12 +128,12 @@ const question = [
     },
 
     {
-        question: 'How to write an IF statement in JavaScript?',
+        question: 'Which event occurs when the user clicks on an HTML element?',
         answers: [
-            { text: 'if i = 5', correct: false },
-            { text: 'if i = 5 then', correct: false },
-            { text: 'if i == 5 then', correct: false },
-            { text: 'if (i == 5)', correct: true },
+            { text: 'onmouseover', correct: false },
+            { text: 'onmouseclick', correct: false },
+            { text: 'onchange', correct: false },
+            { text: 'onclick', correct: true },
 
         ]
     },
@@ -137,7 +160,5 @@ const question = [
         ]
     },
 
-
-
-
 ]
+

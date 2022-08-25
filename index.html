@@ -5,16 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assests/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap" rel="stylesheet">
     <script defer src="./Assests/game.js"></script>
     <title>Coder Girl Quiz</title>
 </head>
-<body>
-    
-</body>
 </html>
 <body>
+
+    
+
     <div class="container">
-        <div id="question container" class="hide">
+        <nav>
+            <ul>
+              <li><a href="./highscore.html" class="prevHS">Previous Highscores</a></li>
+              <li class="timer">Timer: 0</li>
+            </ul>
+          </nav>
+        <div id="questionContainer" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="asnwer-grid">
                 <button class="btn">Answer 1</button>
@@ -25,24 +32,25 @@
         </div>
         <div class="controls">
             <button id="startBtn" class="startBtn btn">Start</button>
-            <button id="nextBtn" class="nextBtn btn">Next</button>
+            <div class="ruleBox">
+                <div class="ruleList">
+                    <div class="info"><h2>Rules to The Game</h2></div>
+                    <div class="info">1. If You answer a questions incorrectly, <strong>15 seconds</strong> will be subtracted from your time</div>
+                    <div class="info">2. ALL questions must be answered before the timer runs out.</div>
+                    <div class="info">3. Make sure you enter your initials to save your score.</div>
+                    <div class="info">4. Give it another try!</div>
+                </div>
+            <!-- <button id="nextBtn" class="nextBtn btn">Next</button> -->
         </div>
-    </div>
+
+        <div class="end-container">
+            <h2 class="end-result"></h2>
+            <h3 class="enter-initials-header"> Enter your initials: </h3>
+            <input type="text" class="initials-input" /> </input>
+            <button class="submit-initials-button">Submit</button>
+            <div>
+            </div>
+          </div>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
